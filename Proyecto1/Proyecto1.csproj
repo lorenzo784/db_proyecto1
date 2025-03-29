@@ -111,6 +111,7 @@
     <Compile Include="Servicios\DistribucionService.cs" />
     <Compile Include="Servicios\ProductoService.cs" />
     <Compile Include="Servicios\ProveedorService.cs" />
+    <Compile Include="Servicios\ReporteService.cs" />
     <EmbeddedResource Include="Forms\Distribucion\ListarDistribuciones.resx">
       <DependentUpon>ListarDistribuciones.cs</DependentUpon>
     </EmbeddedResource>
