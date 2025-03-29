@@ -8,13 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Proyecto1
+namespace Proyecto1.Forms.Productos
 {
-    public partial class Form1 : Form
+    public partial class AgregarPro : Form
     {
-        public Form1()
+        private Inicio inicio;
+        public AgregarPro(Inicio inicio)
         {
             InitializeComponent();
+            this.inicio = inicio;
         }
     }
 }
