@@ -102,6 +102,7 @@ namespace Proyecto1
             this.btnProvee.TabIndex = 2;
             this.btnProvee.Text = "Proveedores";
             this.btnProvee.UseVisualStyleBackColor = false;
+            this.btnProvee.Click += new System.EventHandler(this.btnProvee_Click);
             // 
             // btnProductos
             // 

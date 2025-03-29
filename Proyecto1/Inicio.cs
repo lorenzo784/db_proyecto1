@@ -1,4 +1,5 @@
 ﻿using Proyecto1.Forms.Productos;
+using Proyecto1.Forms.Proveedores;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +36,20 @@ namespace Proyecto1
 
             panelContent.Controls.Add(frmPro);
             frmPro.Show();
+        }
+
+        private void btnProvee_Click(object sender, EventArgs e)
+        {
+            ListarProveedores frmProvee = new ListarProveedores(this);
+
+            frmProvee.TopLevel = false;
+            frmProvee.FormBorderStyle = FormBorderStyle.None;
+            frmProvee.Dock = DockStyle.Fill;
+
+            panelContent.Controls.Clear();
+
+            panelContent.Controls.Add(frmProvee);
+            frmProvee.Show();
         }
     }
 }
