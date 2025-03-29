@@ -119,5 +119,31 @@ namespace Proyecto1.Servicios
             }
             return null;
         }
+
+        public static Dictionary<int, string> ObtenerProductosDictionary()
+        {
+            Dictionary<int, string> productos = new Dictionary<int, string>();
+
+            using (SqlConnection conn = new Conexion().AbrirConexion())
+            {
+                string query = "SELECT id, nombre FROM productos ORDER BY nombre";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string nombre = reader.GetString(1);
+                            productos.Add(id, nombre);
+                        }
+                    }
+                }
+            }
+
+            return productos;
+        }
+
+
     }
 }

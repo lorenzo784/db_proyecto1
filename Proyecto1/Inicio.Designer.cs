@@ -87,6 +87,7 @@ namespace Proyecto1
             this.btnDis.TabIndex = 3;
             this.btnDis.Text = "Distribución";
             this.btnDis.UseVisualStyleBackColor = true;
+            this.btnDis.Click += new System.EventHandler(this.btnDis_Click);
             // 
             // btnProvee
             // 

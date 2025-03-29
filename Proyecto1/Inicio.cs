@@ -1,4 +1,5 @@
-﻿using Proyecto1.Forms.Productos;
+﻿using Proyecto1.Forms.Distribucion;
+using Proyecto1.Forms.Productos;
 using Proyecto1.Forms.Proveedores;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,20 @@ namespace Proyecto1
 
             panelContent.Controls.Add(frmProvee);
             frmProvee.Show();
+        }
+
+        private void btnDis_Click(object sender, EventArgs e)
+        {
+            ListarDistribuciones frm = new ListarDistribuciones(this);
+
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            panelContent.Controls.Clear();
+
+            panelContent.Controls.Add(frm);
+            frm.Show();
         }
     }
 }
