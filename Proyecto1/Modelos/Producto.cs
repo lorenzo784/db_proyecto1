@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Proyecto1.Modelos
 {
-    internal class Producto
+    public class Producto
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Precio { get; set; }
+        public DateTime Fecha_ingreso { get; set; }
+        public int Stock { get; set; }
     }
+
 }

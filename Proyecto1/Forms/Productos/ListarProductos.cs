@@ -62,11 +62,18 @@ namespace Proyecto1.Forms.Productos
                 string valor = dataGridView1.CurrentRow.Cells[0].Value.ToString();
 
                 string id = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
-                ProductoService.EliminarProducto(int.Parse(id));
+                Producto producto = ProductoService.ObtenerProducto(int.Parse(id));
 
-                MessageBox.Show("Registro eliminado " + id);
+                EditarProducto frmPro = new EditarProducto(this.inicio, producto);
 
-                dataGridView1.DataSource = ProductoService.ObtenerProductos();
+                frmPro.TopLevel = false;
+                frmPro.FormBorderStyle = FormBorderStyle.None;
+                frmPro.Dock = DockStyle.Fill;
+
+                this.inicio.panelContent.Controls.Clear();
+
+                this.inicio.panelContent.Controls.Add(frmPro);
+                frmPro.Show();
             }
         }
     }

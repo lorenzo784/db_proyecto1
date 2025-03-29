@@ -30,11 +30,11 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbStock = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbPrecio = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbDesc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.lbNombre = new System.Windows.Forms.Label();
@@ -64,21 +64,22 @@
             this.btnAgregar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
             this.btnAgregar.Font = new System.Drawing.Font("Lucida Fax", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAgregar.Location = new System.Drawing.Point(547, 572);
+            this.btnAgregar.Location = new System.Drawing.Point(543, 572);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(175, 36);
+            this.btnAgregar.Size = new System.Drawing.Size(181, 36);
             this.btnAgregar.TabIndex = 20;
             this.btnAgregar.Text = "Guardar cambios";
             this.btnAgregar.UseVisualStyleBackColor = false;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // textBox3
+            // tbStock
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(226, 282);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(297, 30);
-            this.textBox3.TabIndex = 19;
+            this.tbStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbStock.Location = new System.Drawing.Point(226, 282);
+            this.tbStock.Name = "tbStock";
+            this.tbStock.Size = new System.Drawing.Size(297, 30);
+            this.tbStock.TabIndex = 19;
             // 
             // label3
             // 
@@ -89,13 +90,13 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Stock";
             // 
-            // textBox2
+            // tbPrecio
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(226, 186);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(297, 30);
-            this.textBox2.TabIndex = 17;
+            this.tbPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbPrecio.Location = new System.Drawing.Point(226, 186);
+            this.tbPrecio.Name = "tbPrecio";
+            this.tbPrecio.Size = new System.Drawing.Size(297, 30);
+            this.tbPrecio.TabIndex = 17;
             // 
             // label2
             // 
@@ -106,14 +107,14 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Precio";
             // 
-            // textBox1
+            // tbDesc
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(226, 382);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(297, 104);
-            this.textBox1.TabIndex = 15;
+            this.tbDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbDesc.Location = new System.Drawing.Point(226, 382);
+            this.tbDesc.Multiline = true;
+            this.tbDesc.Name = "tbDesc";
+            this.tbDesc.Size = new System.Drawing.Size(297, 104);
+            this.tbDesc.TabIndex = 15;
             // 
             // label1
             // 
@@ -149,11 +150,11 @@
             this.ClientSize = new System.Drawing.Size(767, 671);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAgregar);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.tbStock);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbPrecio);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbDesc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbNombre);
             this.Controls.Add(this.lbNombre);
@@ -162,6 +163,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "EditarProducto";
             this.Text = "EditarProducto";
+            this.Load += new System.EventHandler(this.EditarProducto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,11 +173,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbStock;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbPrecio;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbDesc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label lbNombre;
