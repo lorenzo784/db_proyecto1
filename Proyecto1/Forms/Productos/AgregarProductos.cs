@@ -18,5 +18,10 @@ namespace Proyecto1.Forms.Productos
             InitializeComponent();
             this.inicio = inicio;
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
