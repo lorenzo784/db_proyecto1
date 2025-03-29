@@ -85,5 +85,10 @@ namespace Proyecto1.Forms.Productos
             inicio.panelContent.Controls.Add(frm);
             frm.Show();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            mostrarDatos();
+        }
     }
 }

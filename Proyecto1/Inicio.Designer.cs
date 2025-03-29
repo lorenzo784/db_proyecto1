@@ -157,6 +157,7 @@ namespace Proyecto1
             this.Font = new System.Drawing.Font("Lucida Fax", 14.25F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Inicio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panelContent.ResumeLayout(false);

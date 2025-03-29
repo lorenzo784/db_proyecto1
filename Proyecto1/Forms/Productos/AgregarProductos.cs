@@ -79,5 +79,10 @@ namespace Proyecto1.Forms.Productos
         {
 
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            mostrarDatos();
+        }
     }
 }
