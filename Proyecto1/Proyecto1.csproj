@@ -69,7 +69,8 @@
     <Compile Include="Modelos\Producto.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicios\Productos\Producto.cs" />
+    <Compile Include="Servicios\Conexion.cs" />
+    <Compile Include="Servicios\ProductoService.cs" />
     <EmbeddedResource Include="Forms\Productos\AgregarProductos.resx">
       <DependentUpon>AgregarProductos.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Proyecto1.Modelos;
+using Proyecto1.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,6 +33,11 @@ namespace Proyecto1.Forms.Productos
 
             this.inicio.panelContent.Controls.Add(frmPro);
             frmPro.Show();
+        }
+
+        private void ListarProductos_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = ProductoService.ObtenerProductos();
         }
     }
 }
