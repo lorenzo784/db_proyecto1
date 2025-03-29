@@ -62,5 +62,20 @@ namespace Proyecto1.Forms.Proveedores
                 frmPro.Show();
             }
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                string valor = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+
+                string id = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
+                ProveedorService.EliminarProveedor(int.Parse(id));
+
+                MessageBox.Show("Registro eliminado " + id);
+
+                dataGridView1.DataSource = ProveedorService.ObtenerProveedores();
+            }
+        }
     }
 }
