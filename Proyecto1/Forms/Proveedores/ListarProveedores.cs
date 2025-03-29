@@ -24,5 +24,19 @@ namespace Proyecto1.Forms.Proveedores
         {
             dataGridView1.DataSource = ProveedorService.ObtenerProveedores();
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarProveedor frmProvee = new AgregarProveedor(this.inicio);
+
+            frmProvee.TopLevel = false;
+            frmProvee.FormBorderStyle = FormBorderStyle.None;
+            frmProvee.Dock = DockStyle.Fill;
+
+            this.inicio.panelContent.Controls.Clear();
+
+            this.inicio.panelContent.Controls.Add(frmProvee);
+            frmProvee.Show();
+        }
     }
 }
