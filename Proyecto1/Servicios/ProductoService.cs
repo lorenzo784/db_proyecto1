@@ -12,9 +12,24 @@ namespace Proyecto1.Servicios
     class ProductoService
     {
 
-        public static void InsertarProducto(string nombre, string descripcion, decimal precio, int stock)
+        public static bool InsertarProducto(string nombre, string descripcion, decimal precio, int stock)
         {
+
             using (SqlConnection conn = new Conexion().AbrirConexion())
+            {
+                string checkQuery = "SELECT COUNT(*) FROM productos WHERE nombre = @nombre";
+                SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
+                checkCmd.Parameters.AddWithValue("@nombre", nombre);
+                int count = (int)checkCmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    return false;
+                }
+            }
+
+
+         using (SqlConnection conn = new Conexion().AbrirConexion())
             {
                 string query = "INSERT INTO productos (nombre, descripcion, precio, stock) VALUES (@nombre, @descripcion, @precio, @stock)";
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -23,6 +38,7 @@ namespace Proyecto1.Servicios
                 cmd.Parameters.AddWithValue("@precio", precio);
                 cmd.Parameters.AddWithValue("@stock", stock);
                 cmd.ExecuteNonQuery();
+                return true;
             }
         }
 
