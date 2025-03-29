@@ -12,7 +12,7 @@ namespace Proyecto1.Servicios
     class ProductoService
     {
 
-        public void InsertarProducto(string nombre, string descripcion, decimal precio, int stock)
+        public static void InsertarProducto(string nombre, string descripcion, decimal precio, int stock)
         {
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {
@@ -38,7 +38,7 @@ namespace Proyecto1.Servicios
             }
         }
 
-        public void EditarProducto(int id, string nombre, string descripcion, decimal precio, int stock)
+        public static void EditarProducto(int id, string nombre, string descripcion, decimal precio, int stock)
         {
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {
@@ -53,7 +53,7 @@ namespace Proyecto1.Servicios
             }
         }
 
-        public void EliminarProducto(int id)
+        public static void EliminarProducto(int id)
         {
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {

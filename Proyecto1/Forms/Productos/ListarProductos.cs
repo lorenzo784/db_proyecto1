@@ -39,5 +39,35 @@ namespace Proyecto1.Forms.Productos
         {
             dataGridView1.DataSource = ProductoService.ObtenerProductos();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                string valor = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+
+                string id = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
+                ProductoService.EliminarProducto(int.Parse(id));
+
+                MessageBox.Show("Registro eliminado " + id);
+
+                dataGridView1.DataSource = ProductoService.ObtenerProductos();
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                string valor = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+
+                string id = dataGridView1.CurrentRow.Cells["id"].Value.ToString();
+                ProductoService.EliminarProducto(int.Parse(id));
+
+                MessageBox.Show("Registro eliminado " + id);
+
+                dataGridView1.DataSource = ProductoService.ObtenerProductos();
+            }
+        }
     }
 }
