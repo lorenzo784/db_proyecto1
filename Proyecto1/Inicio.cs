@@ -1,4 +1,6 @@
-﻿using Proyecto1.Forms.Distribucion;
+﻿using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using Proyecto1.Forms.Distribucion;
 using Proyecto1.Forms.Productos;
 using Proyecto1.Forms.Proveedores;
 using Proyecto1.Modelos;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,7 +28,7 @@ namespace Proyecto1
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-
+            Reportes();
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -70,31 +73,23 @@ namespace Proyecto1
             frm.Show();
         }
 
-        private void panelContent_Paint(object sender, PaintEventArgs e)
+        private void Inicio_Load(object sender, EventArgs e)
         {
-            DataTable dt = ReporteService.ObtenerCantidadProductosPorProveedor();
-
-            chart1.Series.Clear();
-            chart1.ChartAreas.Clear();
-            chart1.ChartAreas.Add(new ChartArea("chartArea"));
-            chart1.Series.Add("CantidadProductos");
-            chart1.Series["CantidadProductos"].XValueMember = "Proveedor";
-            chart1.Series["CantidadProductos"].YValueMembers = "TotalProductos";
-            chart1.Series["CantidadProductos"].ChartType = SeriesChartType.Bar;
-
-            chart1.DataSource = dt;
-            chart1.DataBind();
+            Reportes();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Reportes()
         {
-            if (numericUpDown1.Value > 0)
-            {
-                dataGridView1.DataSource = ReporteService.ObtenerProductosStockBajo((int)numericUpDown1.Value);
-                return;
-            }
-            MessageBox.Show("Ingrese una cantidad de stock", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            PanelPrincipal frm = new PanelPrincipal();
 
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            panelContent.Controls.Clear();
+
+            panelContent.Controls.Add(frm);
+            frm.Show();
         }
     }
 }
