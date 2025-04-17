@@ -30,25 +30,34 @@ namespace Proyecto1
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelContent = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnDis = new System.Windows.Forms.Button();
             this.btnProvee = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
-            this.panelContent = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
+            // panelContent
+            // 
+            this.panelContent.Location = new System.Drawing.Point(285, 6);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(777, 671);
+            this.panelContent.TabIndex = 0;
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnCerrar);
             this.panel1.Controls.Add(this.btnInicio);
             this.panel1.Controls.Add(this.btnDis);
             this.panel1.Controls.Add(this.btnProvee);
             this.panel1.Controls.Add(this.btnProductos);
-            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Location = new System.Drawing.Point(5, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(278, 671);
+            this.panel1.Size = new System.Drawing.Size(280, 671);
             this.panel1.TabIndex = 0;
             // 
             // btnInicio
@@ -59,7 +68,7 @@ namespace Proyecto1
             this.btnInicio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
             this.btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInicio.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnInicio.Location = new System.Drawing.Point(20, 51);
+            this.btnInicio.Location = new System.Drawing.Point(20, 50);
             this.btnInicio.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(240, 50);
@@ -116,12 +125,20 @@ namespace Proyecto1
             this.btnProductos.UseVisualStyleBackColor = false;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
-            // panelContent
+            // btnCerrar
             // 
-            this.panelContent.Location = new System.Drawing.Point(292, 6);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(760, 670);
-            this.panelContent.TabIndex = 0;
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
+            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Location = new System.Drawing.Point(20, 595);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(240, 50);
+            this.btnCerrar.TabIndex = 4;
+            this.btnCerrar.Text = "Cerrar sesion";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // Inicio
             // 
@@ -132,6 +149,7 @@ namespace Proyecto1
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Lucida Fax", 14.25F, System.Drawing.FontStyle.Bold);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -144,12 +162,13 @@ namespace Proyecto1
 
         #endregion
 
+        public System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnDis;
         private System.Windows.Forms.Button btnProvee;
         private System.Windows.Forms.Button btnProductos;
-        public System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.Button btnInicio;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
 

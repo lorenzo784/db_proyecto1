@@ -16,13 +16,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using Proyecto1.Forms;
+using Proyecto1.Forms.Login;
 
 namespace Proyecto1
 {
     public partial class Inicio : Form
     {
-        public Inicio()
+        private Layout layout;
+        public Inicio(Layout layout)
         {
+            this.layout = layout;
             InitializeComponent();
         }
 
@@ -89,6 +93,20 @@ namespace Proyecto1
             panelContent.Controls.Clear();
 
             panelContent.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            InicioSesion frm = new InicioSesion(this.layout);
+
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            this.layout.panel1.Controls.Clear();
+
+            this.layout.panel1.Controls.Add(frm);
             frm.Show();
         }
     }

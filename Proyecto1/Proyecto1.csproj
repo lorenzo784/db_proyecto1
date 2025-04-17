@@ -124,6 +124,24 @@
     <Compile Include="Forms\Distribucion\ListarProductosDis.Designer.cs">
       <DependentUpon>ListarProductosDis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Layout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Layout.Designer.cs">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\InicioSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\InicioSesion.Designer.cs">
+      <DependentUpon>InicioSesion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login\Registro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login\Registro.Designer.cs">
+      <DependentUpon>Registro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Productos\AgregarProductos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +197,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\Conexion.cs" />
     <Compile Include="Servicios\DistribucionService.cs" />
+    <Compile Include="Servicios\LoginService.cs" />
     <Compile Include="Servicios\ProductoService.cs" />
     <Compile Include="Servicios\ProveedorService.cs" />
     <Compile Include="Servicios\ReporteService.cs" />
@@ -187,6 +206,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Distribucion\ListarProductosDis.resx">
       <DependentUpon>ListarProductosDis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Layout.resx">
+      <DependentUpon>Layout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\InicioSesion.resx">
+      <DependentUpon>InicioSesion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login\Registro.resx">
+      <DependentUpon>Registro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Productos\AgregarProductos.resx">
       <DependentUpon>AgregarProductos.cs</DependentUpon>
