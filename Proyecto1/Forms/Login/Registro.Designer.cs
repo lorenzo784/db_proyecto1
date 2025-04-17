@@ -77,6 +77,7 @@
             // 
             this.tbContra.Location = new System.Drawing.Point(359, 352);
             this.tbContra.Name = "tbContra";
+            this.tbContra.PasswordChar = '*';
             this.tbContra.Size = new System.Drawing.Size(360, 30);
             this.tbContra.TabIndex = 7;
             // 
@@ -93,6 +94,7 @@
             // 
             this.tbContra2.Location = new System.Drawing.Point(359, 450);
             this.tbContra2.Name = "tbContra2";
+            this.tbContra2.PasswordChar = '*';
             this.tbContra2.Size = new System.Drawing.Size(360, 30);
             this.tbContra2.TabIndex = 9;
             // 
