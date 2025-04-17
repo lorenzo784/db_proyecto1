@@ -32,11 +32,12 @@ namespace Proyecto1
         {
             this.panelContent = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.btnDis = new System.Windows.Forms.Button();
             this.btnProvee = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnSalida = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@ namespace Proyecto1
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnSalida);
             this.panel1.Controls.Add(this.btnCerrar);
             this.panel1.Controls.Add(this.btnInicio);
             this.panel1.Controls.Add(this.btnDis);
@@ -59,6 +61,21 @@ namespace Proyecto1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(280, 671);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.FlatAppearance.BorderSize = 0;
+            this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
+            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
+            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCerrar.Location = new System.Drawing.Point(20, 595);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(240, 50);
+            this.btnCerrar.TabIndex = 5;
+            this.btnCerrar.Text = "Cerrar sesion";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnInicio
             // 
@@ -125,20 +142,20 @@ namespace Proyecto1
             this.btnProductos.UseVisualStyleBackColor = false;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
-            // btnCerrar
+            // btnSalida
             // 
-            this.btnCerrar.FlatAppearance.BorderSize = 0;
-            this.btnCerrar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
-            this.btnCerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
-            this.btnCerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCerrar.Location = new System.Drawing.Point(20, 595);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(240, 50);
-            this.btnCerrar.TabIndex = 4;
-            this.btnCerrar.Text = "Cerrar sesion";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            this.btnSalida.FlatAppearance.BorderSize = 0;
+            this.btnSalida.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkCyan;
+            this.btnSalida.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkCyan;
+            this.btnSalida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalida.Location = new System.Drawing.Point(19, 290);
+            this.btnSalida.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            this.btnSalida.Name = "btnSalida";
+            this.btnSalida.Size = new System.Drawing.Size(240, 50);
+            this.btnSalida.TabIndex = 4;
+            this.btnSalida.Text = "Salida de productos";
+            this.btnSalida.UseVisualStyleBackColor = true;
+            this.btnSalida.Click += new System.EventHandler(this.btnSalida_Click);
             // 
             // Inicio
             // 
@@ -169,6 +186,7 @@ namespace Proyecto1
         private System.Windows.Forms.Button btnProvee;
         private System.Windows.Forms.Button btnProductos;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnSalida;
     }
 }
 

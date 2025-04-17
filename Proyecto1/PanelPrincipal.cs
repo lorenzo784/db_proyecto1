@@ -30,7 +30,7 @@ namespace Proyecto1
                 dataGridView1.DataSource = productos;
                 if (productos.Rows.Count > 0)
                 {
-                    CrearPdf("Productos por Fecha", productos);
+                    CrearPdf("Productos con stock bajo", productos);
                 }
                 return;
             }
@@ -46,7 +46,7 @@ namespace Proyecto1
 
             if (productos.Rows.Count > 0)
             {
-                CrearPdf("Productos por Fecha", productos);
+                CrearPdf("Productos ingresados por rango de fecha", productos);
             }
             else
             {
@@ -60,7 +60,7 @@ namespace Proyecto1
 
             if (productos.Rows.Count > 0)
             {
-                CrearPdf("Productos por Fecha", productos);
+                CrearPdf("Prodcutos relacionados con sus proveedores", productos);
             }
             else
             {
@@ -74,7 +74,7 @@ namespace Proyecto1
 
             if (productos.Rows.Count > 0)
             {
-                CrearPdf("Productos por Fecha", productos);
+                CrearPdf("Prodcutos relacionados con sus proveedores", productos);
             }
             else
             {
@@ -88,7 +88,7 @@ namespace Proyecto1
 
             if (productos.Rows.Count > 0)
             {
-                CrearPdf("Productos por Fecha", productos);
+                CrearPdf("Prodcutos relacionados con sus proveedores", productos);
             }
             else
             {
@@ -156,6 +156,23 @@ namespace Proyecto1
 
             chart1.DataSource = dt;
             chart1.DataBind();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DateTime fechaInicio = dateTimePicker1.Value;
+            DateTime fechaFin = dateTimePicker2.Value;
+
+            DataTable productos = SalidaService.ObtenerProductosVendidos(fechaInicio, fechaFin);
+
+            if (productos.Rows.Count > 0)
+            {
+                CrearPdf("Productos vendidos por rango de fechas", productos);
+            }
+            else
+            {
+                MessageBox.Show("No se encontraron productos para las fechas seleccionadas.");
+            }
         }
     }
 }

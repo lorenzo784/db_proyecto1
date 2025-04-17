@@ -178,6 +178,12 @@
     <Compile Include="Forms\Proveedores\ListarProveedores.Designer.cs">
       <DependentUpon>ListarProveedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Salida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Salida.Designer.cs">
+      <DependentUpon>Salida.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,7 @@
     <Compile Include="Servicios\ProductoService.cs" />
     <Compile Include="Servicios\ProveedorService.cs" />
     <Compile Include="Servicios\ReporteService.cs" />
+    <Compile Include="Servicios\SalidaService.cs" />
     <EmbeddedResource Include="Forms\Distribucion\ListarDistribuciones.resx">
       <DependentUpon>ListarDistribuciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Proveedores\ListarProveedores.resx">
       <DependentUpon>ListarProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Salida.resx">
+      <DependentUpon>Salida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

@@ -109,5 +109,19 @@ namespace Proyecto1
             this.layout.panel1.Controls.Add(frm);
             frm.Show();
         }
+
+        private void btnSalida_Click(object sender, EventArgs e)
+        {
+            Salida frm = new Salida();
+
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            panelContent.Controls.Clear();
+
+            panelContent.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }
