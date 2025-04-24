@@ -106,5 +106,29 @@ namespace Proyecto1.Forms
                 MessageBox.Show("Selecciona una fila para eliminar.");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbNit.Text))
+            {
+                MessageBox.Show("Por favor, ingresa un NIT.");
+                return;
+            }
+
+            var cliente = ClientesService.BuscarClientePorNit(tbNit.Text);
+            if (cliente != null)
+            {
+                string mensaje = $"Nombre: {cliente["nombre"]}\n" +
+                                 $"Dirección: {cliente["direccion"]}\n" +
+                                 $"Teléfono: {cliente["telefono"]}\n" +
+                                 $"Correo: {cliente["correo"]}";
+                MessageBox.Show(mensaje, "Cliente encontrado");
+            }
+            else
+            {
+                MessageBox.Show("Cliente no encontrado.");
+            }
+        }
+
     }
 }
