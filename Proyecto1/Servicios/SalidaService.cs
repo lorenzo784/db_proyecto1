@@ -11,7 +11,7 @@ namespace Proyecto1.Servicios
 {
     class SalidaService
     {
-        public static bool RegistrarSalidaProducto(int idProducto, int cantidad)
+        public static bool RegistrarSalidaProducto(int idProducto, int cantidad, int id_venta)
         {
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {
@@ -40,10 +40,11 @@ namespace Proyecto1.Servicios
             {
                 try
                 {
-                    string insertQuery = "INSERT INTO salida_productos (id_producto, cantidad) VALUES (@idProducto, @cantidad)";
+                    string insertQuery = "INSERT INTO salida_productos (id_producto, cantidad, id_venta) VALUES (@idProducto, @cantidad, @id_venta)";
                     SqlCommand insertCmd = new SqlCommand(insertQuery, conn, transaction);
                     insertCmd.Parameters.AddWithValue("@idProducto", idProducto);
                     insertCmd.Parameters.AddWithValue("@cantidad", cantidad);
+                    insertCmd.Parameters.AddWithValue("@id_venta", id_venta);
                     insertCmd.ExecuteNonQuery();
 
                     string updateQuery = "UPDATE productos SET stock = stock - @cantidad WHERE id = @idProducto";
@@ -60,6 +61,27 @@ namespace Proyecto1.Servicios
                     transaction.Rollback();
                     MessageBox.Show($"Error al registrar salida: {ex.Message}");
                     return false;
+                }
+            }
+        }
+
+        public static int RegistrarVenta(string nit, int total)
+        {
+            using (SqlConnection conn = new Conexion().AbrirConexion())
+            {
+                string insertQuery = "INSERT INTO ventas (nit, total) OUTPUT INSERTED.id VALUES (@nit, @total)";
+                SqlCommand cmd = new SqlCommand(insertQuery, conn);
+                cmd.Parameters.AddWithValue("@nit", nit);
+                cmd.Parameters.AddWithValue("@total", total);
+
+                try
+                {
+                    int idGenerado = (int)cmd.ExecuteScalar();
+                    return idGenerado;
+                }
+                catch (Exception ex)
+                {
+                    return -1;
                 }
             }
         }

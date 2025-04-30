@@ -14,7 +14,7 @@ namespace Proyecto1.Servicios
             {
                 string query = "SELECT datos_cliente FROM Clientes WHERE JSON_UNQUOTE(JSON_EXTRACT(datos_cliente, '$.nit')) LIKE @nit";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@nit", "%" + nit + "%");
+                cmd.Parameters.AddWithValue("@nit", nit);
 
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {

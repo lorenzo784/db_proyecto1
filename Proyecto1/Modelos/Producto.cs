@@ -14,6 +14,7 @@ namespace Proyecto1.Modelos
         public decimal Precio { get; set; }
         public DateTime Fecha_ingreso { get; set; }
         public int Stock { get; set; }
+        public string Ruta_imagen { get; set; }
     }
 
 }

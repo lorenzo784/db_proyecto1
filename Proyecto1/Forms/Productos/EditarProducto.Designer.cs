@@ -38,6 +38,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
             this.lbNombre = new System.Windows.Forms.Label();
+            this.tbImagen = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pbImagen = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancelar
@@ -77,7 +81,7 @@
             // tbStock
             // 
             this.tbStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbStock.Location = new System.Drawing.Point(226, 282);
+            this.tbStock.Location = new System.Drawing.Point(58, 293);
             this.tbStock.Name = "tbStock";
             this.tbStock.Size = new System.Drawing.Size(297, 30);
             this.tbStock.TabIndex = 19;
@@ -85,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(348, 257);
+            this.label3.Location = new System.Drawing.Point(180, 268);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 22);
             this.label3.TabIndex = 18;
@@ -94,7 +98,7 @@
             // tbPrecio
             // 
             this.tbPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPrecio.Location = new System.Drawing.Point(226, 186);
+            this.tbPrecio.Location = new System.Drawing.Point(58, 197);
             this.tbPrecio.Name = "tbPrecio";
             this.tbPrecio.Size = new System.Drawing.Size(297, 30);
             this.tbPrecio.TabIndex = 17;
@@ -102,7 +106,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(340, 161);
+            this.label2.Location = new System.Drawing.Point(172, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 22);
             this.label2.TabIndex = 16;
@@ -111,7 +115,7 @@
             // tbDesc
             // 
             this.tbDesc.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbDesc.Location = new System.Drawing.Point(226, 382);
+            this.tbDesc.Location = new System.Drawing.Point(58, 393);
             this.tbDesc.Multiline = true;
             this.tbDesc.Name = "tbDesc";
             this.tbDesc.Size = new System.Drawing.Size(297, 104);
@@ -120,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(322, 344);
+            this.label1.Location = new System.Drawing.Point(154, 355);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 22);
             this.label1.TabIndex = 14;
@@ -129,7 +133,7 @@
             // tbNombre
             // 
             this.tbNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbNombre.Location = new System.Drawing.Point(227, 99);
+            this.tbNombre.Location = new System.Drawing.Point(59, 110);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(297, 30);
             this.tbNombre.TabIndex = 13;
@@ -137,11 +141,38 @@
             // lbNombre
             // 
             this.lbNombre.AutoSize = true;
-            this.lbNombre.Location = new System.Drawing.Point(323, 62);
+            this.lbNombre.Location = new System.Drawing.Point(155, 73);
             this.lbNombre.Name = "lbNombre";
             this.lbNombre.Size = new System.Drawing.Size(89, 22);
             this.lbNombre.TabIndex = 12;
             this.lbNombre.Text = "Nombre";
+            // 
+            // tbImagen
+            // 
+            this.tbImagen.Location = new System.Drawing.Point(421, 128);
+            this.tbImagen.Name = "tbImagen";
+            this.tbImagen.Size = new System.Drawing.Size(191, 30);
+            this.tbImagen.TabIndex = 24;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(618, 128);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 30);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "img";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pbImagen
+            // 
+            this.pbImagen.BackColor = System.Drawing.Color.DarkCyan;
+            this.pbImagen.Location = new System.Drawing.Point(421, 225);
+            this.pbImagen.Name = "pbImagen";
+            this.pbImagen.Size = new System.Drawing.Size(287, 272);
+            this.pbImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImagen.TabIndex = 22;
+            this.pbImagen.TabStop = false;
             // 
             // EditarProducto
             // 
@@ -149,6 +180,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(767, 671);
+            this.Controls.Add(this.tbImagen);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.pbImagen);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.tbStock);
@@ -165,6 +199,7 @@
             this.Name = "EditarProducto";
             this.Text = "EditarProducto";
             this.Load += new System.EventHandler(this.EditarProducto_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +217,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbNombre;
         private System.Windows.Forms.Label lbNombre;
+        private System.Windows.Forms.TextBox tbImagen;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pbImagen;
     }
 }

@@ -13,7 +13,7 @@ namespace Proyecto1.Servicios
     class ProductoService
     {
 
-        public static bool InsertarProducto(string nombre, string descripcion, decimal precio, int stock)
+        public static bool InsertarProducto(string nombre, string descripcion, decimal precio, int stock, string ruta_imagen)
         {
 
             using (SqlConnection conn = new Conexion().AbrirConexion())
@@ -32,14 +32,17 @@ namespace Proyecto1.Servicios
 
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {
-                string query = "INSERT INTO productos (nombre, descripcion, precio, stock) VALUES (@nombre, @descripcion, @precio, @stock)";
+                string query = "INSERT INTO productos (nombre, descripcion, precio, stock, ruta_imagen) VALUES (@nombre, @descripcion, @precio, @stock, @ruta_imagen)";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@nombre", nombre);
                 cmd.Parameters.AddWithValue("@descripcion", descripcion);
                 cmd.Parameters.AddWithValue("@precio", precio);
                 cmd.Parameters.AddWithValue("@stock", stock);
-                cmd.ExecuteNonQuery();
-                return true;
+                cmd.Parameters.AddWithValue("@ruta_imagen", string.IsNullOrEmpty(ruta_imagen) ? (object)DBNull.Value : ruta_imagen);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                return rowsAffected > 0;
             }
         }
 
@@ -55,7 +58,7 @@ namespace Proyecto1.Servicios
             }
         }
 
-        public static bool EditarProducto(int id, string nombre, string descripcion, decimal precio, int stock)
+        public static bool EditarProducto(int id, string nombre, string descripcion, decimal precio, int stock, string ruta_imagen)
         {
             using (SqlConnection conn = new Conexion().AbrirConexion())
             {
@@ -71,12 +74,13 @@ namespace Proyecto1.Servicios
                     return false;
                 }
 
-                string updateQuery = "UPDATE productos SET nombre = @nombre, descripcion = @descripcion, precio = @precio, stock = @stock WHERE id = @id";
+                string updateQuery = "UPDATE productos SET nombre = @nombre, descripcion = @descripcion, ruta_imagen = @ruta_imagen, precio = @precio, stock = @stock WHERE id = @id";
                 SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
                 updateCmd.Parameters.AddWithValue("@nombre", nombre);
                 updateCmd.Parameters.AddWithValue("@descripcion", descripcion);
                 updateCmd.Parameters.AddWithValue("@precio", precio);
                 updateCmd.Parameters.AddWithValue("@stock", stock);
+                updateCmd.Parameters.AddWithValue("@ruta_imagen", string.IsNullOrEmpty(ruta_imagen) ? (object)DBNull.Value : ruta_imagen);
                 updateCmd.Parameters.AddWithValue("@id", id);
                 updateCmd.ExecuteNonQuery();
 
@@ -112,7 +116,8 @@ namespace Proyecto1.Servicios
                             Nombre = reader.GetString(1),
                             Descripcion = reader.GetString(2),
                             Precio = reader.GetDecimal(3),
-                            Stock = reader.GetInt32(4)
+                            Stock = reader.GetInt32(4),
+                            Ruta_imagen = reader.IsDBNull(6) ? null : reader.GetString(6)
                         };
                     }
                 }
@@ -143,6 +148,38 @@ namespace Proyecto1.Servicios
 
             return productos;
         }
+
+
+        public static List<Producto> ObtenerProductosParaCombo()
+        {
+            List<Producto> productos = new List<Producto>();
+
+            using (SqlConnection conn = new Conexion().AbrirConexion())
+            {
+                string query = "SELECT id, nombre, precio, stock FROM productos ORDER BY nombre";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Producto producto = new Producto
+                            {
+                                Id = reader.GetInt32(0),
+                                Nombre = reader.GetString(1),
+                                Precio = reader.GetDecimal(2),
+                                Stock = reader.GetInt32(3)
+                            };
+                            productos.Add(producto);
+                        }
+                    }
+                }
+            }
+
+            return productos;
+        }
+
+
 
 
     }

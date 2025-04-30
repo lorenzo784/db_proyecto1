@@ -1,4 +1,5 @@
-﻿using Proyecto1.Servicios;
+﻿using Proyecto1.Modelos;
+using Proyecto1.Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,24 +14,36 @@ namespace Proyecto1.Forms
 {
     public partial class Salida : Form
     {
+
+        public string nit = null;
         public Salida()
         {
             InitializeComponent();
-            dataGridView1.Columns.Add("IdProducto", "ID");
-            dataGridView1.Columns.Add("NombreProducto", "Producto");
-            dataGridView1.Columns.Add("Cantidad", "Cantidad");
+            dataGridView1.Columns.Add("idProducto", "ID Producto");
+            dataGridView1.Columns.Add("nombre", "Nombre");
+            dataGridView1.Columns.Add("cantidad", "Cantidad");
+            dataGridView1.Columns.Add("precio", "Precio");
             dataGridView1.Columns["IdProducto"].Visible = false;
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (cbProducto.SelectedItem != null && nCantidad.Value > 0)
             {
-                var item = (KeyValuePair<int, string>)cbProducto.SelectedItem;
-                int idProducto = item.Key;
-                string nombre = item.Value;
+                Producto productoSeleccionado = (Producto)cbProducto.SelectedItem;
+
+                int idProducto = productoSeleccionado.Id;
+                string nombre = productoSeleccionado.Nombre;
                 int cantidad = (int)nCantidad.Value;
-                dataGridView1.Rows.Add(idProducto, nombre, cantidad);
+                decimal precio = productoSeleccionado.Precio;
+                int stock = productoSeleccionado.Stock;
+
+                nCantidad.Value = 0;
+                dataGridView1.Rows.Add(idProducto, nombre, cantidad, precio);
             }
             else
             {
@@ -40,11 +53,11 @@ namespace Proyecto1.Forms
 
         private void Salida_Load(object sender, EventArgs e)
         {
-            Dictionary<int, string> productos = ProductoService.ObtenerProductosDictionary();
+            List<Producto> productos = ProductoService.ObtenerProductosParaCombo();
 
-            cbProducto.DataSource = new BindingSource(productos, null);
-            cbProducto.DisplayMember = "Value";
-            cbProducto.ValueMember = "Key";
+            cbProducto.DataSource = productos;
+            cbProducto.DisplayMember = "Nombre";
+            cbProducto.ValueMember = "Id";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -59,7 +72,25 @@ namespace Proyecto1.Forms
                 return;
             }
 
+            if (string.IsNullOrEmpty(nit))
+            {
+                MessageBox.Show("No hay nit del cliente");
+                return;
+            }
+
+            int cantidadTotal = 0;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                int cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value) * Convert.ToInt32(row.Cells["Precio"].Value);
+                cantidadTotal += cantidad;
+
+            }
+
             bool todoCorrecto = true;
+
+            int id_venta = SalidaService.RegistrarVenta(nit, cantidadTotal);
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -68,7 +99,7 @@ namespace Proyecto1.Forms
                 int idProducto = Convert.ToInt32(row.Cells["IdProducto"].Value);
                 int cantidad = Convert.ToInt32(row.Cells["Cantidad"].Value);
 
-                bool exito = SalidaService.RegistrarSalidaProducto(idProducto, cantidad);
+                bool exito = SalidaService.RegistrarSalidaProducto(idProducto, cantidad, id_venta);
 
                 if (!exito)
                 {
@@ -82,6 +113,10 @@ namespace Proyecto1.Forms
             {
                 MessageBox.Show("Todas las salidas fueron registradas con éxito.");
                 dataGridView1.Rows.Clear();
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
             }
         }
 
@@ -118,11 +153,16 @@ namespace Proyecto1.Forms
             var cliente = ClientesService.BuscarClientePorNit(tbNit.Text);
             if (cliente != null)
             {
+                this.nit = cliente["nit"].ToString();
                 string mensaje = $"Nombre: {cliente["nombre"]}\n" +
                                  $"Dirección: {cliente["direccion"]}\n" +
                                  $"Teléfono: {cliente["telefono"]}\n" +
                                  $"Correo: {cliente["correo"]}";
-                MessageBox.Show(mensaje, "Cliente encontrado");
+                MessageBox.Show("Cliente encontrado");
+                textBox1.Text = cliente["nombre"].ToString();
+                textBox2.Text = cliente["direccion"].ToString();
+                textBox3.Text = cliente["telefono"].ToString();
+                textBox4.Text = cliente["correo"].ToString();
             }
             else
             {

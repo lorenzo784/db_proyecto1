@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,6 +18,7 @@ namespace Proyecto1.Forms.Productos
     {
         private Inicio inicio;
         private Producto producto;
+        private string rutaImagen = string.Empty;
         public EditarProducto(Inicio inicio, Producto producto)
         {
             this.inicio = inicio;
@@ -30,6 +32,24 @@ namespace Proyecto1.Forms.Productos
             tbDesc.Text = producto.Descripcion;
             tbPrecio.Text = producto.Precio.ToString();
             tbStock.Text = producto.Stock.ToString();
+            string pathImagenGuardada = producto.Ruta_imagen;
+
+            if (!string.IsNullOrEmpty(pathImagenGuardada))
+            {
+                string rutaCompleta = Path.Combine(Application.StartupPath, pathImagenGuardada);
+                if (File.Exists(rutaCompleta))
+                {
+                    pbImagen.Image = Image.FromFile(rutaCompleta);
+                }
+                else
+                {
+                    tbImagen.Text = "Seleccione una imagen";
+                }
+            }
+            else
+            {
+                tbImagen.Text = "Seleccione una imagen";
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -52,7 +72,22 @@ namespace Proyecto1.Forms.Productos
                 return;
             }
 
-            bool resultado = ProductoService.EditarProducto(producto.Id, tbNombre.Text, tbDesc.Text, decimal.Parse(tbPrecio.Text), int.Parse(tbStock.Text));
+            string pathImagenGuardada = null;
+            if (!string.IsNullOrEmpty(rutaImagen))
+            {
+                string nombreArchivo = Path.GetFileName(rutaImagen);
+                string carpetaDestino = Path.Combine(Application.StartupPath, "Imagenes");
+
+                if (!Directory.Exists(carpetaDestino))
+                    Directory.CreateDirectory(carpetaDestino);
+
+                string rutaDestino = Path.Combine(carpetaDestino, nombreArchivo);
+                File.Copy(rutaImagen, rutaDestino, true);
+
+                pathImagenGuardada = Path.Combine("Imagenes", nombreArchivo);
+            }
+
+            bool resultado = ProductoService.EditarProducto(producto.Id, tbNombre.Text, tbDesc.Text, decimal.Parse(tbPrecio.Text), int.Parse(tbStock.Text), pathImagenGuardada);
 
             if (!resultado)
             {
@@ -89,6 +124,21 @@ namespace Proyecto1.Forms.Productos
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             mostrarDatos();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    rutaImagen = ofd.FileName;
+                    tbImagen.Text = Path.GetFileName(rutaImagen);
+                    pbImagen.Image = Image.FromFile(rutaImagen);
+                }
+            }
         }
     }
 }

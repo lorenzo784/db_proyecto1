@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ namespace Proyecto1.Forms.Productos
     public partial class AgregarPro : Form
     {
         private Inicio inicio;
+        private string rutaImagen = string.Empty;
         public AgregarPro(Inicio inicio)
         {
             InitializeComponent();
@@ -40,8 +42,22 @@ namespace Proyecto1.Forms.Productos
                 MessageBox.Show("Ingrese un stock válido (número entero positivo)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string pathImagenGuardada = null;
+            if (!string.IsNullOrEmpty(rutaImagen))
+            {
+                string nombreArchivo = Path.GetFileName(rutaImagen);
+                string carpetaDestino = Path.Combine(Application.StartupPath, "Imagenes");
 
-            bool resultado = ProductoService.InsertarProducto(tbNombre.Text, tbDesc.Text, decimal.Parse(tbPrecio.Text), int.Parse(tbStock.Text));
+                if (!Directory.Exists(carpetaDestino))
+                    Directory.CreateDirectory(carpetaDestino);
+
+                string rutaDestino = Path.Combine(carpetaDestino, nombreArchivo);
+                File.Copy(rutaImagen, rutaDestino, true);
+
+                pathImagenGuardada = Path.Combine("Imagenes", nombreArchivo);
+            }
+
+            bool resultado = ProductoService.InsertarProducto(tbNombre.Text, tbDesc.Text, decimal.Parse(tbPrecio.Text), int.Parse(tbStock.Text), pathImagenGuardada);
 
             if(!resultado)
             {
@@ -59,6 +75,7 @@ namespace Proyecto1.Forms.Productos
             tbDesc.Text = "";
             tbPrecio.Text = "";
             tbStock.Text = "";
+            tbImagen.Text = "";
         }
 
         private void mostrarDatos()
@@ -77,12 +94,27 @@ namespace Proyecto1.Forms.Productos
 
         private void AgregarPro_Load(object sender, EventArgs e)
         {
-
+            tbImagen.Text = "Seleccione una imagen";
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             mostrarDatos();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    rutaImagen = ofd.FileName;
+                    tbImagen.Text = Path.GetFileName(rutaImagen);
+                    pbImagen.Image = Image.FromFile(rutaImagen);
+                }
+            }
         }
     }
 }
